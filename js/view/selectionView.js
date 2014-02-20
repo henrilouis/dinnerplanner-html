@@ -171,7 +171,7 @@ var SelectionView = function (container,model) {
 	//This function gets called when there is a change at the model
 	this.update = function(arg){
 		this.numberOfGuests.html(model.getNumberOfGuests()+" Guests");
-		this.totalPrice.html(model.getTotalMenuPrice());
+		this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
 
 		// update the menu
 		updateMenu();
