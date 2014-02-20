@@ -23,41 +23,102 @@ var SelectionView = function (container,model) {
 	var right = $("<div class='col-md-10'>");
 
 	var peopleBox = $("<div>");
-	var plusButton = $("<button class='btn'");
-	var minusButton = $("<button class='btn'");
+	var plusButton = $("<button class='btn'>");
+	var minusButton = $("<button class='btn'>");
 	var numberOfGuests = $("<span>");
 	var menuBox = $("<table class='table table-striped'>");
+	var totalPrice = $("<h4>");
 	var confirmButton = $("<button class='btn'>");
 
 	var searchBox = $("<div>");
+	var searchInnerBox = $("<div class='row'>");
 	var searchInput = $("<input type='search'>");
 	var searchButton = $("<button class='btn'>");
-	var searchDropDopwn = $("<select>");
+	var searchDropDown = $("<select>");
 	var dishBox = $("<div>");
 
+	/*****************************************************
+
+				Creating the menu on the left
+
+	*****************************************************/
+
+	minusButton.html('<span class="glyphicon glyphicon-minus"></span>');
+	plusButton.html('<span class="glyphicon glyphicon-plus"></span>')
 	peopleBox.html("<h3>My Dinner</h3>");
 	peopleBox.append(minusButton);
 	peopleBox.append(numberOfGuests);
 	peopleBox.append(plusButton);
 
+	confirmButton.html("Confirm Dinner");
 	menuBox.append("<tr><td>Dish Name</td><td>Cost</td></tr>");
-	menuBox.append("<tr><td></td><td>SEK 0.00</td></tr>");
-	menuBox.append(confirmButton);
-	
-	searchBox.html('SELECT DISH');
-	searchBox.append(searchInput);
-	searchBox.append(searchButton);
-	searchDropDown.append("<option>Starter</option><option>Main</option><option>Dessert</option>");
-	searchBox.append(searchDropDown);
 
-	left.append(peoplebox);
-	left.append(menubox);
+	updateMenu();
+
+	menuBox.append(totalPrice);
+	menuBox.append(confirmButton);
+
+	function updateMenu()
+	{
+		$(menuBox).find("tr:gt(0)").remove();
+		var menuDishes = model.getFullMenu();
+		for(key in menuDishes)
+		{
+			var ingredients = [];
+			var sum = 0;
+			ingredients = ingredients.concat(menuDishes[key].ingredients);
+			for(k in ingredients)
+			{
+				sum += parseFloat(ingredients[k].price) * model.getNumberOfGuests();
+			}
+			menuBox.append("<tr><td>"+menuDishes[key]['name']+"</td><td>"+sum+"</td></tr>");
+		}
+	}
+	
+	/*****************************************************
+
+			Creating the dish search box
+
+	*****************************************************/
+
+	searchBox.html('<h3>Select Dish</h3>');
+	searchDropDown.append("<option>Starter</option><option>Main</option><option>Dessert</option>");
+	searchButton.html('Search');
+
+	searchInnerBox.append(searchInput);
+	searchInnerBox.append(searchButton);
+	searchInnerBox.append(searchDropDown);
+	searchBox.append(searchInnerBox);
+
+
+	/*****************************************************
+
+			Creating the overview of dishes
+			
+	*****************************************************/
+	
+
+
+	/*****************************************************
+
+		Appending everything to the right container
+			
+	*****************************************************/
+
+	left.append(peopleBox);
+	left.append(menuBox);
 
 	right.append(searchBox);
 
 	div.append(left);
 	div.append(right);
 
+	container.append(div);
+
+	this.plusButton = plusButton;
+	this.minusButton = minusButton;
+	this.numberOfGuests = numberOfGuests;
+	this.totalPrice = totalPrice;
 	/*
 	//we set the constant text
 	div.html("Total menu price ");
@@ -89,6 +150,7 @@ var SelectionView = function (container,model) {
 	this.update = function(arg){
 		this.numberOfGuests.html(model.getNumberOfGuests());
 		this.totalPrice.html(model.getTotalMenuPrice());
+		updateMenu();
 	}
 }
  
