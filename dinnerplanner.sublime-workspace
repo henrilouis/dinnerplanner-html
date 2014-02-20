@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"updat",
+				"updateDishes"
+			],
+			[
+				"total",
+				"totalPrice"
+			],
+			[
+				"tota",
+				"totalPrice"
+			],
+			[
 				"test",
 				"testfunction"
 			],
@@ -24,48 +36,50 @@
 			}
 		},
 		{
-			"file": "js/view/overViewController.js",
-			"settings":
-			{
-				"buffer_size": 293,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 1891,
+				"buffer_size": 2007,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/view/landingViewController.js",
+			"file": "selectionView.html",
 			"settings":
 			{
-				"buffer_size": 173,
+				"buffer_size": 1860,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Diner Planner</title>\n\n    <!-- Bootstrap CSS -->\n    <link rel=\"stylesheet\" href=\"http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css\">\n    <link rel=\"stylesheet\" href=\"style.css\">\n\n  </head>\n  <body>\n  	<div class=\"container\">\n		<header>\n			<h1>Dinner planner</h1>\n			<div id=\"slogan\"><i>From the best chefs in the world directly into your kitchen.</i></div>\n		</header>\n  	</div>\n	<div class=\"container\">\n		<div id=\"exampleView\">\n			<div>\n				Number of guest <span id=\"numberOfGuests\"></span>\n			</div>\n			<div>\n				<button id=\"plusGuest\" class=\"btn\"><span class=\"glyphicon glyphicon-plus\"></span></button>\n			    <button id=\"minusGuest\" class=\"btn\"><span class=\"glyphicon glyphicon-minus\"></span></button>\n			</div>\n		</div>\n	</div>\n\n    <!-- jQuery -->\n    <script src=\"https://code.jquery.com/jquery.js\"></script>\n    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->\n    <script src=\"http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js\"></script>\n\n	<!-- The application JavaScript code -->\n	<script src=\"js/app.js\"></script>\n	<script src=\"js/model/dinnerModel.js\"></script>\n	<script src=\"js/view/exampleView.js\"></script>\n	<script src=\"js/view/exampleViewController.js\"></script>\n\n	<script src=\"js/view/dishView.js\"></script>\n	<script src=\"js/view/dishViewController.js\"></script>\n\n	<script src=\"js/view/landingView.js\"></script>\n	<script src=\"js/view/landingViewController.js\"></script>\n\n	<script src=\"js/view/overView.js\"></script>\n	<script src=\"js/view/overViewController.js\"></script>\n\n	<script src=\"js/view/preparationView.js\"></script>\n	<script src=\"js/view/preparationViewController.js\"></script>\n\n	<script src=\"js/view/selectionView.js\"></script>\n	<script src=\"js/view/selectionViewController.js\"></script>\n\n  </body>\n</html>",
-			"file": "exampleView.html",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "js/view/selectionView.js",
 			"settings":
 			{
-				"buffer_size": 2024,
+				"buffer_size": 5087,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "//ExampleView Object constructor\nvar ExampleView = function (container,model) {\n	\n	// Get all the relevant elements of the view (ones that show data\n  	// and/or ones that responed to interaction)\n	this.numberOfGuests = container.find(\"#numberOfGuests\");\n	this.plusButton = container.find(\"#plusGuest\");\n	this.minusButton = container.find(\"#minusGuest\");\n	\n	//Creating the components dynamically. Here we create the following HTML content:\n	//\n	//<div class=\"row\">\n	//  Total menu price <span id=\"totalPrice\"></span>\n	//</div>\n	//\n	//and add it to the the exampleView \n	\n	//div we just store in temporary variable because we won't need it later\n	var div = $(\"<div>\");\n	//we set the constant text\n	div.html(\"Total menu price \");\n	//and we add the text-primary class to make it blue\n	div.addClass(\"text-primary\");\n	//total price we store in object variable (using this) so we can access it later\n	this.totalPrice = $(\"<span>\");\n	//we set the id of the total price span\n	this.totalPrice.attr(\"id\",\"totalPrice\");\n	//we add total price span to the div\n	div.append(this.totalPrice);\n	//finally we add the div to the view container\n	container.append(div);\n	\n	//Set the inital values of the components\n	this.numberOfGuests.html(model.getNumberOfGuests());\n	this.totalPrice.html(model.getTotalMenuPrice());\n	\n	/*****************************************  \n	      Observer implementation    \n	*****************************************/\n	\n	//Register an observer to the model\n	model.addObserver(this);\n	\n	//This function gets called when there is a change at the model\n	this.update = function(arg){\n		this.numberOfGuests.html(model.getNumberOfGuests());\n		this.totalPrice.html(model.getTotalMenuPrice());\n	}\n}\n \n",
-			"file": "js/view/exampleView.js",
-			"file_size": -1,
-			"file_write_time": -1,
+			"file": "js/view/selectionViewController.js",
 			"settings":
 			{
-				"buffer_size": 1700,
+				"buffer_size": 832,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 1164,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/model/dinnerModel.js",
+			"settings":
+			{
+				"buffer_size": 8460,
 				"line_ending": "Windows"
 			}
 		}
@@ -73,7 +87,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 265.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -138,22 +152,23 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/landingView.js",
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/landingView.html",
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/exampleView.html",
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/landingView.js",
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/dishView.html",
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/selectionView.html",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/index.html",
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/style.css",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/model/dinnerModel.js",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/preparationView.html",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/overView.html",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/landingView.html",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/dishView.html",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/selectionView.html",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/exampleView.js",
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/dishViewController.js",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/exampleView.html",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/landingViewController.js",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/overViewController.js",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/landingView.js",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/landingView.js",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/style.css",
+		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/dishViewController.js",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/preparationViewController.js",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/selectionViewController.js",
-		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/overViewController.js",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/dishView.js",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/overView.js",
 		"/C/Users/Henri/Documents/GitHub/dinnerplanner-html/js/view/preparationView.js",
@@ -191,6 +206,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"h1",
+			"confirmButton",
+			"confirmbutton",
+			"peoplebox",
+			"btn",
+			"col-md-3",
+			"total",
+			"menubox",
+			"numberOfGuests",
+			"NumberOfGuests",
+			"numberOfGuests",
+			"searchButton",
+			"menutable",
+			"#menuTable",
+			"notifyObservers",
+			"menuTable",
+			"0",
+			"add",
+			"table-striped",
+			"jquery",
+			"search",
+			"selectionView",
+			"searchDropDown",
+			"otalprice",
 			"change",
 			"view",
 			"window.stage",
@@ -288,7 +327,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -304,8 +343,8 @@
 						"selection":
 						[
 							[
-								291,
-								291
+								632,
+								632
 							]
 						],
 						"settings":
@@ -319,55 +358,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "js/view/overViewController.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 293,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								293,
-								293
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1891,
+						"buffer_size": 2007,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1872,
-								1339
+								509,
+								509
 							]
 						],
 						"settings":
@@ -378,27 +386,90 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 540.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "js/view/landingViewController.js",
+					"buffer": 2,
+					"file": "selectionView.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 173,
+						"buffer_size": 1860,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								173,
-								173
+								509,
+								509
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/view/selectionView.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5087,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								650,
+								651
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/view/selectionViewController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								372,
+								372
 							]
 						],
 						"settings":
@@ -416,20 +487,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "exampleView.html",
+					"buffer": 5,
+					"file": "style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2024,
+						"buffer_size": 1164,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1647,
-								1647
+								906,
+								906
 							]
 						],
 						"settings":
@@ -437,30 +508,30 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage"
 						},
-						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.x": -0.0,
+						"translation.y": 810.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "js/view/exampleView.js",
+					"buffer": 6,
+					"file": "js/model/dinnerModel.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1700,
+						"buffer_size": 8460,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								354,
-								354
+								1696,
+								1696
 							]
 						],
 						"settings":
@@ -472,10 +543,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 450.0,
+						"translation.y": 1125.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
