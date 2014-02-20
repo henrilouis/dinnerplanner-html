@@ -70,19 +70,18 @@ var SelectionView = function (container,model) {
 	}
 	
 	/*****************************************************
-
 			Creating the dish search box
 
 	*****************************************************/
 
 	var searchBox = $("<div>");
 	var searchInnerBox = $("<div class='row'>");
-	var searchInput = $("<input type='search'>");
+	var searchInput = $("<input type='search' id='searchInput'>");
 	var searchButton = $("<button class='btn'>");
 	var searchDropDown = $("<select id='category'>");
 
 	searchBox.html('<h3>Select Dish</h3>');
-	searchDropDown.append("<option>Starter</option><option>Main</option><option>Dessert</option>");
+	searchDropDown.append("<option>starter</option><option>main dish</option><option>dessert</option>");
 	searchButton.html('Search');
 
 	searchInnerBox.append(searchInput);
@@ -92,40 +91,41 @@ var SelectionView = function (container,model) {
 
 
 	/*****************************************************
-
 			Creating the overview of dishes
 			
 	*****************************************************/
 	var dishBox = $("<div>");
-	var option = "starter";
-	//var option = $("#category").find(":selected").text();
 
 	updateDishes();
-	function updateDishes()
+	function updateDishes(type,string)
 	{
-		var dishes = model.getAllDishes(option);
+		dishBox.empty();
+		if(!type)
+		{
+			type = "starter";
+		}
+
+		var dishes = model.getAllDishes(type,string);
 		var row = $("<div class='row'>");
 
 		for(i = 0; i < dishes.length; i++)
 		{
 			
-
 			var figure = $("<figure class='col-md-2'>");
 			var caption = $("<figcaption>");
 
-			figure.append("<img src='images/"+dishes[i]['image']+"'>")
+			figure.append("<img src='images/"+dishes[i].image+"'>")
 			caption.html(dishes[i].name);
 
-			figure.append('caption');
+			figure.append(caption);
 
 			row.append(figure);
 		}
-		
+
 		dishBox.append(row);
 	}
 
 	/*****************************************************
-
 		Appending everything to the right container
 			
 	*****************************************************/
@@ -145,28 +145,11 @@ var SelectionView = function (container,model) {
 	this.minusButton = minusButton;
 	this.numberOfGuests = numberOfGuests;
 	this.totalPrice = totalPrice;
-	/*
-	//we set the constant text
-	div.html("Total menu price ");
-	//and we add the text-primary class to make it blue
-	div.addClass("text-primary");
-	//total price we store in object variable (using this) so we can access it later
-	this.totalPrice = $("<span>");
-	//we set the id of the total price span
-	this.totalPrice.attr("id","totalPrice");
-	//we add total price span to the div
-	div.append(this.totalPrice);
-	//finally we add the div to the view container
-	container.append(div);
-	
-	//Set the inital values of the components
-	this.numberOfGuests.html(model.getNumberOfGuests());
-	this.totalPrice.html(model.getTotalMenuPrice());
-
-	*/
+	this.searchDropDown = searchDropDown;
 	
 	/*****************************************  
 	      Observer implementation    
+
 	*****************************************/
 	
 	//Register an observer to the model
@@ -176,7 +159,27 @@ var SelectionView = function (container,model) {
 	this.update = function(arg){
 		this.numberOfGuests.html(model.getNumberOfGuests());
 		this.totalPrice.html(model.getTotalMenuPrice());
+
+		// update the menu
 		updateMenu();
+		
 	}
+
+	/*******************************************
+			Listeners for the searchbar
+
+	********************************************/
+
+	searchDropDown.change(function()
+	{
+		updateDishes($("#category").find(":selected").text(), $('#searchInput').val());
+	});
+
+	searchButton.click(function()
+	{
+		updateDishes($("#category").find(":selected").text(), $('#searchInput').val());
+	});
+
+
 }
  
