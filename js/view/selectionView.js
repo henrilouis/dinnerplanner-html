@@ -20,8 +20,8 @@ var SelectionView = function (container,model) {
 	// Create the main container variables
 
 	var div = $("<div class='row'>");
-	var left = $("<div class='col-md-2'>");
-	var right = $("<div class='col-md-10'>");
+	var left = $("<div id='leftbox' class='col-md-3'>");
+	var right = $("<div id='rightbox' class='col-md-9'>");
 
 	/*****************************************************
 
@@ -30,12 +30,12 @@ var SelectionView = function (container,model) {
 	*****************************************************/
 
 	var peopleBox = $("<div>");
-	var plusButton = $("<button id='plusGuests' class='btn'>");
-	var minusButton = $("<button id='minusGuests' class='btn'>");
+	var plusButton = $("<button id='plusGuests' class='btn btn-info'>");
+	var minusButton = $("<button id='minusGuests' class='btn btn-info'>");
 	var numberOfGuests = $("<span>");
 	var menuBox = $("<table id='menuTable' class='table'>");
 	var totalPrice = $("<h4>");
-	var confirmButton = $("<button class='btn'>");
+	var confirmButton = $("<button class='btn btn-success'>");
 
 	minusButton.html('<span class="glyphicon glyphicon-minus"></span>');
 	plusButton.html('<span class="glyphicon glyphicon-plus"></span>')
@@ -75,9 +75,9 @@ var SelectionView = function (container,model) {
 	*****************************************************/
 
 	var searchBox = $("<div>");
-	var searchInnerBox = $("<div class='row'>");
+	var searchInnerBox = $("<div>");
 	var searchInput = $("<input type='search' id='searchInput'>");
-	var searchButton = $("<button class='btn'>");
+	var searchButton = $("<button class='btn btn-info'>");
 	var searchDropDown = $("<select id='category'>");
 
 	searchBox.html('<h3>Select Dish</h3>');
@@ -105,7 +105,7 @@ var SelectionView = function (container,model) {
 		}
 
 		var dishes = model.getAllDishes(type,string);
-		var row = $("<div class='row'>");
+		var row = $("<div>");
 
 		for(i = 0; i < dishes.length; i++)
 		{
