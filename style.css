@@ -7,3 +7,13 @@ header
 {
 	
 }
+
+.ui-state-default
+{
+	background:rgba(0,0,255,0.05);
+}
+
+.ui-state-hover
+{
+	background:rgba(0,255,0,0.1);
+}

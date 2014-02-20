@@ -33,7 +33,7 @@ var SelectionView = function (container,model) {
 	var plusButton = $("<button class='btn'>");
 	var minusButton = $("<button class='btn'>");
 	var numberOfGuests = $("<span>");
-	var menuBox = $("<table class='table table-striped'>");
+	var menuBox = $("<table id='menuTable' class='table'>");
 	var totalPrice = $("<h4>");
 	var confirmButton = $("<button class='btn'>");
 
@@ -56,16 +56,17 @@ var SelectionView = function (container,model) {
 	{
 		$(menuBox).find("tr:gt(0)").remove();
 		var menuDishes = model.getFullMenu();
-		for(key in menuDishes)
+
+		for(i=0; i<menuDishes.length; i++)
 		{
 			var ingredients = [];
 			var sum = 0;
-			ingredients = ingredients.concat(menuDishes[key].ingredients);
+			ingredients = ingredients.concat(menuDishes[i].ingredients);
 			for(k in ingredients)
 			{
 				sum += parseFloat(ingredients[k].price) * model.getNumberOfGuests();
 			}
-			menuBox.append("<tr><td>"+menuDishes[key]['name']+"</td><td>"+sum+"</td></tr>");
+			menuBox.append("<tr><td>"+menuDishes[i]['name']+"</td><td>"+sum+"</td></tr>");
 		}
 	}
 	
@@ -89,7 +90,6 @@ var SelectionView = function (container,model) {
 	searchInnerBox.append(searchDropDown);
 	searchBox.append(searchInnerBox);
 
-
 	/*****************************************************
 			Creating the overview of dishes
 			
@@ -111,7 +111,7 @@ var SelectionView = function (container,model) {
 		for(i = 0; i < dishes.length; i++)
 		{
 			
-			var figure = $("<figure class='col-md-2'>");
+			var figure = $("<figure value="+dishes[i].id+" class='col-md-2'>");
 			var caption = $("<figcaption>");
 
 			figure.append("<img src='images/"+dishes[i].image+"'>")
@@ -119,6 +119,11 @@ var SelectionView = function (container,model) {
 
 			figure.append(caption);
 
+			// Making the stuff draggable
+			$(figure).draggable({
+				appendTo:"body",
+				helper:"clone"
+			});
 			row.append(figure);
 		}
 
@@ -166,7 +171,7 @@ var SelectionView = function (container,model) {
 	}
 
 	/*******************************************
-			Listeners for the searchbar
+					Listeners
 
 	********************************************/
 
@@ -179,6 +184,16 @@ var SelectionView = function (container,model) {
 	{
 		updateDishes($("#category").find(":selected").text(), $('#searchInput').val());
 	});
+
+	$("#menuTable").droppable({
+		activeClass: "ui-state-default",
+		hoverClass: "ui-state-hover",
+		drop: function(event, ui){
+
+			model.addDishToMenu(ui.draggable.attr('value'));
+			updateMenu();
+		}
+	})
 
 
 }
