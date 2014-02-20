@@ -17,3 +17,41 @@ header
 {
 	background:rgba(0,255,0,0.1);
 }
+
+#minusGuests
+{
+	margin-right:14px;
+}
+
+#plusGuests
+{
+	margin-left:14px;
+}
+
+#menuTable
+{
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+figure
+{
+	padding: 5px;
+	width: 150px;
+	height: 165px;
+	background: #efefef;
+	border-radius: 5px;
+	float: left;
+	margin-right:15px;
+	margin-top:15px;
+}
+
+#searchInput
+{
+	margin-right:20px;
+}
+
+#category
+{
+	margin-left:20px;
+}

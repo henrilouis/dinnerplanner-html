@@ -30,8 +30,8 @@ var SelectionView = function (container,model) {
 	*****************************************************/
 
 	var peopleBox = $("<div>");
-	var plusButton = $("<button class='btn'>");
-	var minusButton = $("<button class='btn'>");
+	var plusButton = $("<button id='plusGuests' class='btn'>");
+	var minusButton = $("<button id='minusGuests' class='btn'>");
 	var numberOfGuests = $("<span>");
 	var menuBox = $("<table id='menuTable' class='table'>");
 	var totalPrice = $("<h4>");
@@ -50,7 +50,6 @@ var SelectionView = function (container,model) {
 	updateMenu();
 
 	menuBox.append(totalPrice);
-	menuBox.append(confirmButton);
 
 	function updateMenu()
 	{
@@ -111,7 +110,7 @@ var SelectionView = function (container,model) {
 		for(i = 0; i < dishes.length; i++)
 		{
 			
-			var figure = $("<figure value="+dishes[i].id+" class='col-md-2'>");
+			var figure = $("<figure value="+dishes[i].id+">");
 			var caption = $("<figcaption>");
 
 			figure.append("<img src='images/"+dishes[i].image+"'>")
@@ -139,6 +138,7 @@ var SelectionView = function (container,model) {
 
 	left.append(peopleBox);
 	left.append(menuBox);
+	left.append(confirmButton);
 
 	right.append(searchBox);
 	right.append(dishBox);
@@ -157,8 +157,8 @@ var SelectionView = function (container,model) {
 	this.searchButton = searchButton;
 	this.menuBox = menuBox;
 
-	this.numberOfGuests.html(model.getNumberOfGuests());
-	this.totalPrice.html(model.getTotalMenuPrice());
+	this.numberOfGuests.html(model.getNumberOfGuests()+" Guests");
+	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
 	
 	/*****************************************  
 	      Observer implementation    
@@ -170,7 +170,7 @@ var SelectionView = function (container,model) {
 	
 	//This function gets called when there is a change at the model
 	this.update = function(arg){
-		this.numberOfGuests.html(model.getNumberOfGuests());
+		this.numberOfGuests.html(model.getNumberOfGuests()+" Guests");
 		this.totalPrice.html(model.getTotalMenuPrice());
 
 		// update the menu
