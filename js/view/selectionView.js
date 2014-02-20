@@ -96,8 +96,8 @@ var SelectionView = function (container,model) {
 	*****************************************************/
 	var dishBox = $("<div>");
 
-	updateDishes();
-	function updateDishes(type,string)
+	
+	this.updateDishes = function updateDishes(type,string)
 	{
 		dishBox.empty();
 		if(!type)
@@ -130,6 +130,8 @@ var SelectionView = function (container,model) {
 		dishBox.append(row);
 	}
 
+	this.updateDishes();
+
 	/*****************************************************
 		Appending everything to the right container
 			
@@ -148,9 +150,15 @@ var SelectionView = function (container,model) {
 
 	this.plusButton = plusButton;
 	this.minusButton = minusButton;
+	this.confirmButton = confirmButton;
 	this.numberOfGuests = numberOfGuests;
 	this.totalPrice = totalPrice;
 	this.searchDropDown = searchDropDown;
+	this.searchButton = searchButton;
+	this.menuBox = menuBox;
+
+	this.numberOfGuests.html(model.getNumberOfGuests());
+	this.totalPrice.html(model.getTotalMenuPrice());
 	
 	/*****************************************  
 	      Observer implementation    
@@ -169,32 +177,6 @@ var SelectionView = function (container,model) {
 		updateMenu();
 		
 	}
-
-	/*******************************************
-					Listeners
-
-	********************************************/
-
-	searchDropDown.change(function()
-	{
-		updateDishes($("#category").find(":selected").text(), $('#searchInput').val());
-	});
-
-	searchButton.click(function()
-	{
-		updateDishes($("#category").find(":selected").text(), $('#searchInput').val());
-	});
-
-	$("#menuTable").droppable({
-		activeClass: "ui-state-default",
-		hoverClass: "ui-state-hover",
-		drop: function(event, ui){
-
-			model.addDishToMenu(ui.draggable.attr('value'));
-			updateMenu();
-		}
-	})
-
 
 }
  

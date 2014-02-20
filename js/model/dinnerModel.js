@@ -55,6 +55,7 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
 		menu[this.getDish(id).type] = id; 
+		notifyObservers();
 	}
 
 	//Removes dish from menu
