@@ -29,13 +29,14 @@ var SelectionView = function (container,model) {
 
 	*****************************************************/
 
-	var peopleBox = $("<div>");
+	var peopleBox = $("<div class='centertext'>");
 	var plusButton = $("<button id='plusGuests' class='btn btn-info'>");
 	var minusButton = $("<button id='minusGuests' class='btn btn-info'>");
 	var numberOfGuests = $("<span>");
 	var menuBox = $("<table id='menuTable' class='table'>");
 	var totalPrice = $("<h4>");
 	var confirmButton = $("<button class='btn btn-success'>");
+	var confirmButtonContainer = $("<div class='centertext'>");
 
 	minusButton.html('<span class="glyphicon glyphicon-minus"></span>');
 	plusButton.html('<span class="glyphicon glyphicon-plus"></span>')
@@ -45,6 +46,7 @@ var SelectionView = function (container,model) {
 	peopleBox.append(plusButton);
 
 	confirmButton.html("Confirm Dinner");
+	confirmButtonContainer.append(confirmButton);
 	menuBox.append("<tr><td>Dish Name</td><td>Cost</td></tr>");
 
 	updateMenu();
@@ -138,7 +140,7 @@ var SelectionView = function (container,model) {
 
 	left.append(peopleBox);
 	left.append(menuBox);
-	left.append(confirmButton);
+	left.append(confirmButtonContainer);
 
 	right.append(searchBox);
 	right.append(dishBox);
