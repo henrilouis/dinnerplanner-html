@@ -17,10 +17,17 @@ var SelectionView = function (container,model) {
 	//
 	//and add it to the the SelectionView 
 	
-	//div we just store in temporary variable because we won't need it later
+	// Create the main container variables
+
 	var div = $("<div class='row'>");
 	var left = $("<div class='col-md-2'>");
 	var right = $("<div class='col-md-10'>");
+
+	/*****************************************************
+
+				Creating the menu on the left
+
+	*****************************************************/
 
 	var peopleBox = $("<div>");
 	var plusButton = $("<button class='btn'>");
@@ -29,19 +36,6 @@ var SelectionView = function (container,model) {
 	var menuBox = $("<table class='table table-striped'>");
 	var totalPrice = $("<h4>");
 	var confirmButton = $("<button class='btn'>");
-
-	var searchBox = $("<div>");
-	var searchInnerBox = $("<div class='row'>");
-	var searchInput = $("<input type='search'>");
-	var searchButton = $("<button class='btn'>");
-	var searchDropDown = $("<select>");
-	var dishBox = $("<div>");
-
-	/*****************************************************
-
-				Creating the menu on the left
-
-	*****************************************************/
 
 	minusButton.html('<span class="glyphicon glyphicon-minus"></span>');
 	plusButton.html('<span class="glyphicon glyphicon-plus"></span>')
@@ -81,6 +75,12 @@ var SelectionView = function (container,model) {
 
 	*****************************************************/
 
+	var searchBox = $("<div>");
+	var searchInnerBox = $("<div class='row'>");
+	var searchInput = $("<input type='search'>");
+	var searchButton = $("<button class='btn'>");
+	var searchDropDown = $("<select id='category'>");
+
 	searchBox.html('<h3>Select Dish</h3>');
 	searchDropDown.append("<option>Starter</option><option>Main</option><option>Dessert</option>");
 	searchButton.html('Search');
@@ -96,8 +96,33 @@ var SelectionView = function (container,model) {
 			Creating the overview of dishes
 			
 	*****************************************************/
-	
+	var dishBox = $("<div>");
+	var option = "starter";
+	//var option = $("#category").find(":selected").text();
 
+	updateDishes();
+	function updateDishes()
+	{
+		var dishes = model.getAllDishes(option);
+		var row = $("<div class='row'>");
+
+		for(i = 0; i < dishes.length; i++)
+		{
+			
+
+			var figure = $("<figure class='col-md-2'>");
+			var caption = $("<figcaption>");
+
+			figure.append("<img src='images/"+dishes[i]['image']+"'>")
+			caption.html(dishes[i].name);
+
+			figure.append('caption');
+
+			row.append(figure);
+		}
+		
+		dishBox.append(row);
+	}
 
 	/*****************************************************
 
@@ -109,6 +134,7 @@ var SelectionView = function (container,model) {
 	left.append(menuBox);
 
 	right.append(searchBox);
+	right.append(dishBox);
 
 	div.append(left);
 	div.append(right);
