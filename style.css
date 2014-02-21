@@ -51,6 +51,18 @@ h1
 	background:rgba(250,245,240,1);
 }
 
+#middlebox
+{
+	background:#fff;
+	border-bottom:dotted thin #ccc;
+}
+
+#middleTable
+{
+	margin-top:8px;
+	margin-bottom:8px;
+}
+
 .ui-state-default
 {
 	background:rgba(0,0,255,0.05);
@@ -123,6 +135,10 @@ figcaption
 	text-align: center;
 }
 
+#backButton
+{
+	margin-top:13px;
+}
 .righttext
 {
 	text-align: right;
