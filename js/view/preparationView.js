@@ -81,7 +81,7 @@ var PreparationView = function (container,model)
 			
 	*****************************************************/
 	var dishBox = $("<div>");
-	var dishOverview = $("<div>");
+	var dishOverview = $("<div class =  'overviewtable'>");
 	
 	function updateOverview()
 	{
@@ -91,22 +91,21 @@ var PreparationView = function (container,model)
 		for(i=0; i<menuDishes.length; i++)
 		{	
 			
-			var ingredients = [];
+			var dishImage = $("<div>");
 			var figure = $("<figure value="+menuDishes[i].id+">");
 			var dishName =(menuDishes[i].name);
 			var dishNameBox = $("<h3>");
-			var descriptionBox = $("<div>");
-			var dishImage = $("<div>");
 			var dishDescription = menuDishes[i].description;
-
-			ingredients = ingredients.concat(menuDishes[i].ingredients);
+			var descriptionBox = $("<div class =  'overviewrow'>");
+			
 			figure.append("<img src='images/"+menuDishes[i].image+"'>")
 
 			dishNameBox.append(dishName);
 			dishImage.append(figure);
+			descriptionBox.append(dishImage);
 			descriptionBox.append(dishNameBox);
 			descriptionBox.append(dishDescription);
-			dishBox.append(dishImage);
+			
 			dishBox.append(descriptionBox);
 			right.append(dishBox)
 		}
