@@ -127,7 +127,7 @@ var DishView = function (container,model) {
 	var ingredientBox = $("<table id='menuTable' class='table'>");
 	var confirmDishButton = $("<button class='btn btn-success'>");
 	var confirmDishButtonContainer = $("<div>");
-	var dishcost = $("<div class='centertext'>");
+	var dishcost = $("<div class='righttext' style='padding-right:35px;'>");
 
 	right_right.append(ingredientHeading);
 	ingredientBox.append("<tr><td>Ingredient Name</td><td>Amount</td><td>Cost</td></tr>");
