@@ -1,42 +1,46 @@
 $(function() {
 
-	/*
-	//Hiding the windows on start and only showing the landing page
-	$("#dishView, #overView, #preparationView, #selectionView").hide();
-	$("#landingView").show();
-
-	//The global variable so we can access it from other controller and views
-	window.stage = function(value)
+	if(window.location.href.indexOf("index.html") > -1) 
 	{
-		switch(value)
-   		{
-	   		case "landingView":
-	   			$("#dishView, #overView, #preparationView, #selectionView").hide();
-	   			$("#landingView").show();
-	   			break;
+		
+		//Hiding the windows on start and only showing the landing page
+		$("#dishView, #overView, #preparationView, #selectionView").hide();
+		$("#landingView").show();
 
-	   		case "dishView":
-	   			$("#landingView, #overView, #preparationView, #selectionView").hide();
-	   			$("#dishView").show();
-	   			break;
+		//The global variable so we can access it from other controller and views
+		window.stage = function(value)
+		{
+			switch(value)
+	   		{
+		   		case "landingView":
+		   			$("#dishView, #overView, #preparationView, #selectionView").hide();
+		   			$("#landingView").show();
+		   			break;
 
-	   		case "overView":
-	   			$("#dishView, #landingView, #preparationView, #selectionView").hide();
-	   			$("#overView").show();
-	   			break;
+		   		case "dishView":
+		   			$("#landingView, #overView, #preparationView, #selectionView").hide();
+		   			$("#dishView").show();
+		   			break;
 
-	   		case "preparationView":
-	   			$("#dishView, #overView, #landingView, #selectionView").hide();
-	   			$("#preparationView").show();
-	   			break;
+		   		case "overView":
+		   			$("#dishView, #landingView, #preparationView, #selectionView").hide();
+		   			$("#overView").show();
+		   			break;
 
-	   		case "selectionView":
-	   			$("#dishView, #overView, #preparationView, #landingView").hide();
-	   			$("#selectionView").show();
-	   			break;
-   		}
+		   		case "preparationView":
+		   			$("#dishView, #overView, #landingView, #selectionView").hide();
+		   			$("#preparationView").show();
+		   			break;
+
+		   		case "selectionView":
+		   			$("#dishView, #overView, #preparationView, #landingView").hide();
+		   			$("#selectionView").show();
+		   			break;
+	   		}
+		}
+
 	}
-	*/
+	
 	
 	//We instantiate our model
 	var model = new DinnerModel();

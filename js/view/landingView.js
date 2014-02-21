@@ -17,6 +17,8 @@ var LandingView = function (container,model)
 
 	row.addClass('row');
 	div.addClass('col-md-4');
+	div.addClass('col-md-offset-4');
+	div.attr('id','introBox');
 
 	button.addClass('btn');
 	button.attr('id','startButton');
