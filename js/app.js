@@ -30,6 +30,7 @@ $(function() {
 		   			break;
 
 		   		case "preparationView":
+		   			preparationView.updateFields3();
 		   			$("#dishView, #overView, #landingView, #selectionView").hide();
 		   			$("#preparationView").show();
 		   			break;

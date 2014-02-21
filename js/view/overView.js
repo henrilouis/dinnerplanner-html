@@ -9,9 +9,9 @@ var OverView = function (container,model) {
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.menuBox = container.find("#menuBox");
-		function updateFields2()
+	function updateFields2()
 	{
-		updateMenu2();
+		updateOverview();
 	}
 	
 	//Creating the components dynamically. Here we create the following HTML content:
@@ -86,25 +86,35 @@ var OverView = function (container,model) {
 	*****************************************************/
 	var dishBox = $("<div>");
 
-	function updateMenu2()
+	function updateOverview()
 	{
 		dishBox.empty();
 		var menuDishes = model.getFullMenu();
 
 		for(i=0; i<menuDishes.length; i++)
-		{
+		{	
+			var ingredients = [];
 			var figure = $("<figure value="+menuDishes[i].id+">");
 			var caption = $("<figcaption>");
+			var sum = 0;
 
+			ingredients = ingredients.concat(menuDishes[i].ingredients);
 			figure.append("<img src='images/"+menuDishes[i].image+"'>")
 			caption.html(menuDishes[i].name);
-
+			/*
+			for(k in ingredients)
+			{
+				sum += parseFloat(ingredients[k].price) * model.getNumberOfGuests();
+			}
+			figure.append(sum);
+			*/
 			figure.append(caption);
 			dishBox.append(figure);
+			
 		}
 
 	}
-	updateMenu2();
+	updateOverview();
 
 	/*****************************************************
 		Appending everything to the right container
@@ -130,7 +140,7 @@ var OverView = function (container,model) {
 	this.menuBox = menuBox;
 	this.MyDinner = MyDinner;
 	this.middleText = middleText;
-		this.updateFields2 = updateFields2;
+	this.updateFields2 = updateFields2;
 
 	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
 	this.MyDinner.html("My Dinner: "+model.getNumberOfGuests()+" Guests");

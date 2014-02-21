@@ -4,83 +4,38 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Diner Planner</title>
+    <title>Dinner Planner</title>
 
+  
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
 
   </head>
   <body>
-
   	<div class="container">
-		<header>
-		  <div class="row">
-			<h1 class="col-md-4">HEMELETTE</h1>
-			<div class="col-md-8" id="slogan"><i>From the best chefs in the world directly into your kitchen.</i></div>
-		  </div>
+		<header class="row">
+			<h1 class="col-md-12">Dinner planner</h1>
+			<div id="slogan" class="col-md-12"><i>From the best chefs in the world directly into your kitchen.</i></div>
 		</header>
   	</div>
-
 	<div class="container">
 		<div id="preparationView">
 
-			<!--
-			<div>
-				//Number of guest <span id="numberOfGuests"></span>
-			</div>
-			<div>
-				<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span>///</button>
-			    <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
-			</div>
-			-->
-			
+		</div>
 
-
-    <div class="row">
-            <div id="nav" class="row">
-                <p class="col-md-6"> My Dinner: <span id="numberofguest"> Person </p>
-                <button id="GoBackEdit" class="btn" class="col-md-4">Go back and edit dinner</button>
-            </div> 
 	</div>
-
-	<div class="row">
-
-	        <div id="image" class="col-md-2">
-                <img>image </img>
-	        </div>
-
-	        
-            <div id="dish" class="col-md-4">
-	             <h3>dishname
-	             </h3>
-	             <p class="dishintro">
-	             </p>  
-	        </div>
-
-
-	        <div id="preparation" class="col-md-6">
-	             <h4>Preparation
-	             </h4>
-	             <p class="preparation">
-	             </p>
-
-	        </div>
-	</div>
-
-
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
-
-	<script src="js/view/preparationView.js"></script>
-	<script src="js/view/preparationViewController.js"></script>
 
 	<script src="js/view/dishView.js"></script>
 	<script src="js/view/dishViewController.js"></script>
@@ -95,6 +50,6 @@
 	<script src="js/view/preparationViewController.js"></script>
 
 	<script src="js/view/selectionView.js"></script>
-	
+	<script src="js/view/selectionViewController.js"></script>
   </body>
 </html>
