@@ -30,27 +30,4 @@ var SelectionViewController = function(view, model ) {
 			model.addDishToMenu(ui.draggable.attr('value'));
 		}
 	});
-
-	$("figure").draggable(
-	{
-		appendTo:"body",
-		helper:"clone",
-		start:function(event,ui)
-		{
-			$(ui.helper).addClass('ui-draggable-helper');
-		}
-	});
-	$("figure").click(function()
-	{
-		if($(this).is('.ui-draggable-helper')) 
-		{
-        	return;
-	    }
-	    else
-	    {
-	    	window.stage("dishView");
-			window.currentDish = $(this).attr('value');
-	    }
-	    
-	});
 }
