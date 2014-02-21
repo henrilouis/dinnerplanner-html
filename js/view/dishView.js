@@ -47,7 +47,7 @@ var DishView = function (container,model) {
 
 	confirmButton.html("Confirm Dinner");
 	confirmButtonContainer.append(confirmButton);
-	menuBox.append("<tr><td>Dish Name</td><td>Cost</td></tr>");
+	menuBox.append("<tr><td><b>Dish Name</b></td><td><b>Cost</b></td></tr>");
 
 	menuBox.append(totalPrice);
 
@@ -106,12 +106,14 @@ var DishView = function (container,model) {
 	dishImage.append("<img src='images/"+dish.image+"'>")
 	dishImageBox.append(dishImage);
 	dishDescriptionBox.append(dishDescription);
-	dishOverview.append(dishNameBox);
+	dishOverview.html(dishNameBox);
 	dishOverview.append(dishImageBox);
 	dishOverview.append(dishDescriptionBox);
 	backtoSelect.html("Back to Select Dish");
 	backtoSelectContainer.append(backtoSelect);
 	}
+	right_left.append(dishOverview);
+	right_left.append(backtoSelectContainer);
 
 	/*****************************************  
 	      Creating dish ingredients
@@ -122,7 +124,7 @@ var DishView = function (container,model) {
 	var ingredientBox = $("<table id='menuTable' class='table'>");
 	var confirmDishButton = $("<button class='btn btn-success'>");
 	var confirmDishButtonContainer = $("<div>");
-	var dishcost = $("<div class='righttext' style='padding-right:35px;'>");
+	var dishcost = $("<div class='righttext' style='padding-right:60px;'>");
 
 	right_right.append(ingredientHeading);
 	ingredientBox.append("<tr><td>Ingredient Name</td><td>Amount</td><td>Cost</td></tr>");
@@ -149,21 +151,17 @@ var DishView = function (container,model) {
 			cost = parseFloat((dish.ingredients[i].price) * model.getNumberOfGuests()).toFixed(0);
 			totalDishCost += dish.ingredients[i].price * model.getNumberOfGuests();
 			ingredientBox.append("<tr><td>"+dish.ingredients[i].name+"</td><td>"+amount+unit+"</td><td>"+cost+"</td></tr>");
-			dishcost.html("Total dishcost: "+ totalDishCost);
+			dishcost.html("Total Cost: "+ totalDishCost);
 		}
 	}
-
+	right_right.append(dishcost);
+	right_right.append(confirmDishButtonContainer);
+	
 
 	/*****************************************  
 	      Append items to right  
 	*****************************************/
-	right_left.append(dishOverview);
-	right_left.append(backtoSelectContainer);
 	right.append(right_left);
-
-	this.backtoSelect = backtoSelect;
-	right_right.append(dishcost);
-	right_right.append(confirmDishButtonContainer);
 	right.append(right_right);
 	
 
@@ -183,10 +181,13 @@ var DishView = function (container,model) {
 	this.numberOfGuests = numberOfGuests;
 	this.totalPrice = totalPrice;
 
+	this.backtoSelect = backtoSelect;
+	this.confirmDishButton = confirmDishButton;
+
 	this.numberOfGuests.html(model.getNumberOfGuests()+" Guests");
 	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
 	this.updateFields = updateFields;
-	this.confirmDishButton = confirmDishButton;
+	
 
 
 	/*****************************************  

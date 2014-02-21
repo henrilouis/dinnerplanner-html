@@ -47,7 +47,7 @@ var SelectionView = function (container,model) {
 
 	confirmButton.html("Confirm Dinner");
 	confirmButtonContainer.append(confirmButton);
-	menuBox.append("<tr><td>Dish Name</td><td>Cost</td></tr>");
+	menuBox.append("<tr><td><b>Dish Name</b></td><td><b>Cost</b></td></tr>");
 
 	updateMenu();
 

@@ -28,11 +28,24 @@ var PreparationView = function (container,model)
 
 	var middleText = $("<table id='middleTable' class='table'>");
 	var MyDinner = $("<h3 style='text-align:right; float:right;'>");
+	var numberOfGuests = $("<span>");
 	var backButton =$("<button class='btn btn-danger' id='backButton'>");
-	backButton.html('Go back and edit dinner');
+	backButton.html('Go back to overview');
 
 	middleText.append(backButton);
 	middleText.append(MyDinner);
+
+	/*****************************************  
+	      Append items to middle  
+	*****************************************/
+	middle.append(middleText);
+
+
+	/*****************************************************
+
+				Creating the (right) box
+
+	*****************************************************/
 
 
 	/*****************************************************
@@ -70,11 +83,11 @@ var PreparationView = function (container,model)
 
 	}
 	updateOverview();
+
 	/*****************************************  
-	      Append items to middle  
+	      Append items to right  
 	*****************************************/
-	middle.append(middleText);
-	middle.append(dishBox)
+	right.append(dishBox)
 	
 		
 	/*****************************************  
@@ -91,6 +104,8 @@ var PreparationView = function (container,model)
 	this.MyDinner = MyDinner;
 	this.middleText = middleText;
 	this.updateFields3 = updateFields3;
+
+	this.MyDinner.html("My Dinner: "+model.getNumberOfGuests()+" Guests");
 
 
 	/*****************************************  
