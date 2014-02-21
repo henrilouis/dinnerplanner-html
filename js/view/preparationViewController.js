@@ -9,9 +9,10 @@ var PreparationViewController = function(view, model ) {
 	view.minusButton.click(function(){
 		model.setNumberOfGuests(model.getNumberOfGuests() - 1);
 	});*/
-    
+    /*
     view.GoGackEditButton.click(function(){
 		window.stage("selectionView");
-	});
-}
+	});*/
+
  // call update function to update number of guests; and initialize?
+}

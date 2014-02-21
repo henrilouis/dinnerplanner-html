@@ -3,7 +3,8 @@
 
 
 //PreparationView Object constructor
-var PreparationView = function (container,model) {
+var PreparationView = function (container,model) 
+{
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
@@ -16,10 +17,10 @@ var PreparationView = function (container,model) {
 
 
     $("#numberofguest").html("My dinner: " + model.getNumberOfGuests() + "people");
-    image.html
+    //image.html
 
 
-    image.addClass(img-responsive alt="Responsive image");
+    //image.addClass(img-responsive alt="Responsive image");
 
 	button.html("Go back and edit dinner");
 
@@ -85,6 +86,5 @@ var PreparationView = function (container,model) {
 	//this.update = function(arg){
 		//this.numberOfGuests.html(model.getNumberOfGuests());
 		//this.totalPrice.html(model.getTotalMenuPrice());
-	}
 }
  
