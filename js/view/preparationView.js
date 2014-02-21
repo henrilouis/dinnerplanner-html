@@ -9,20 +9,11 @@ var PreparationView = function (container,model)
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.menuBox = container.find("#menuBox");
+	
 	function updateFields3()
 	{
 		updateOverview();
 	}
-
-	//Creating the components dynamically. Here we create the following HTML content:
-	//
-	//<div class="row">
-	//  Total menu price <span id="totalPrice"></span>
-	//</div>
-	//
-	//and add it to the the SelectionView 
-	
-	// Create the main container variables
 
 	var div = $("<div class='row'>");
 	var left = $("<div id='leftbox' class='col-md-3'>");
@@ -43,7 +34,7 @@ var PreparationView = function (container,model)
 	middleText.append(backButton);
 	middleText.append(MyDinner);
 
-	
+
 	/*****************************************************
 			Creating the overview of dishes
 			
@@ -74,20 +65,23 @@ var PreparationView = function (container,model)
 			descriptionBox.append(dishNameBox);
 			descriptionBox.append(dishDescription);
 			dishBox.append(descriptionBox);
-			right.append(dishBox)
+			
 		}
 
 	}
 	updateOverview();
-
-	
-	/*****************************************************
-		Appending everything to the right container
-			
-	*****************************************************/
-
+	/*****************************************  
+	      Append items to middle  
+	*****************************************/
 	middle.append(middleText);
+	middle.append(dishBox)
+	
+		
+	/*****************************************  
+	      Append all items to div
+	      Bind items
 
+	*****************************************/
 	div.append(middle);
 	div.append(right);
 
@@ -99,7 +93,7 @@ var PreparationView = function (container,model)
 	this.updateFields3 = updateFields3;
 
 
-		/*****************************************  
+	/*****************************************  
 	      Observer implementation    
 
 	*****************************************/

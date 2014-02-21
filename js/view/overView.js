@@ -9,40 +9,16 @@ var OverView = function (container,model) {
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.menuBox = container.find("#menuBox");
+	
 	function updateFields2()
 	{
 		updateOverview();
 	}
 	
-	//Creating the components dynamically. Here we create the following HTML content:
-	//
-	//<div class="row">
-	//  Total menu price <span id="totalPrice"></span>
-	//</div>
-	//
-	//and add it to the the SelectionView 
-	
-	// Create the main container variables
-
 	var div = $("<div class='row'>");
 	var left = $("<div id='leftbox' class='col-md-3'>");
 	var right = $("<div id='rightbox' class='col-md-9'>");
 	var middle = $("<div id='middlebox' class='col-md-12'>");
-
-	/*****************************************************
-
-				Creating the middle box
-
-	*****************************************************/
-
-	var middleText = $("<table id='middleTable' class='table'>");
-	var MyDinner = $("<h3 style='text-align:right; float:right;'>");
-	var numberOfGuests = $("<span>");
-	var backButton =$("<button class='btn btn-danger' id='backButton'>");
-	backButton.html('Go back and edit dinner');
-
-	middleText.append(backButton);
-	middleText.append(MyDinner);
 
 	/*****************************************************
 
@@ -58,7 +34,6 @@ var OverView = function (container,model) {
 	printButton.html("Print Full Recipe");
 	printButtonContainer.append(printButton);
 	menuBox.append("<tr><td><b>Dish Name</b></td><td><b>Cost</b></td></tr>");
-
 	menuBox.append(totalPrice);
 
 	function updateMenu()
@@ -79,6 +54,41 @@ var OverView = function (container,model) {
 		}
 	}
 	updateMenu();
+
+	/*****************************************  
+	      Append items to left  
+	*****************************************/
+	left.append(menuBox);
+	left.append(printButtonContainer);
+
+
+	/*****************************************************
+
+				Creating the middle box
+
+	*****************************************************/
+
+	var middleText = $("<table id='middleTable' class='table'>");
+	var MyDinner = $("<h3 style='text-align:right; float:right;'>");
+	var numberOfGuests = $("<span>");
+	var backButton =$("<button class='btn btn-danger' id='backButton'>");
+	backButton.html('Go back and edit dinner');
+
+	middleText.append(backButton);
+	middleText.append(MyDinner);
+
+	
+	/*****************************************  
+	      Append items to middle  
+	*****************************************/
+	middle.append(middleText);
+
+
+	/*****************************************************
+
+				Creating the right box
+
+	*****************************************************/
 
 	/*****************************************************
 			Creating the overview of dishes
@@ -115,19 +125,17 @@ var OverView = function (container,model) {
 
 	}
 	updateOverview();
-
-	/*****************************************************
-		Appending everything to the right container
-			
-	*****************************************************/
-
-	left.append(menuBox);
-	left.append(printButtonContainer);
-
+	/*****************************************  
+	      Append items to right  
+	*****************************************/
 	right.append(dishBox)
 
-	middle.append(middleText);
 
+	/*****************************************  
+	      Append all items to container
+	      Bind items
+
+	*****************************************/
 	div.append(middle);
 	div.append(left);
 	div.append(right);

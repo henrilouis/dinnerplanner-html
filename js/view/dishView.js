@@ -7,27 +7,20 @@ var DishView = function (container,model) {
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
+	
 	function updateFields()
 	{
 		dish = model.getDish(window.currentDish);
 		updateDish();
 		updateIngredients();
 	}
-	//Creating the components dynamically. Here we create the following HTML content:
-	//
-	//<div class="row">
-	//  Total menu price <span id="totalPrice"></span>
-	//</div>
-	//
-	//and add it to the the SelectionView 
-	
-	// Create the main container variables
 
 	var div = $("<div class='row'>");
 	var left = $("<div id='leftbox' class='col-md-3'>");
 	var right = $("<div id='rightbox' class='col-md-9'>");
 	var right_left = $("<div class='col-md-6'>");
 	var right_right = $("<div class='col-md-6'>");
+
 
 	/*****************************************************
 
@@ -76,25 +69,21 @@ var DishView = function (container,model) {
 		}
 	}
 
+	/*****************************************  
+	      Append items to left  
+	*****************************************/
+
 	left.append(peopleBox);
 	left.append(menuBox);
 	left.append(confirmButtonContainer);
 
-	div.append(left);
 
-	container.append(div);
+	/*****************************************************
 
-	this.plusButton = plusButton;
-	this.minusButton = minusButton;
-	this.confirmButton = confirmButton;
-	this.numberOfGuests = numberOfGuests;
-	this.totalPrice = totalPrice;
+				Creating the middle box
 
-	this.numberOfGuests.html(model.getNumberOfGuests()+" Guests");
-	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
+	*****************************************************/
 
-
-	
 	/*****************************************  
 	      Creating dish overview   
 
@@ -107,26 +96,22 @@ var DishView = function (container,model) {
 	function updateDish()
 	{
 	var dishName =(dish.name);
-	var dishDescription = dish.description;
-	var dishDescriptionBox = $("<div class='textbox'>")
+	var dishNameBox = $("<h3>")
 	var dishImage = $("<figure value="+dish.id+">");
 	var dishImageBox = $("<div class='overviewrow'>")
-	dishOverview.html("<h3>"+dishName+"</h3>");
+	var dishDescription = dish.description;
+	var dishDescriptionBox = $("<div class='textbox'>")
+
+	dishNameBox.append(dishName);
 	dishImage.append("<img src='images/"+dish.image+"'>")
 	dishImageBox.append(dishImage);
 	dishDescriptionBox.append(dishDescription);
+	dishOverview.append(dishNameBox);
 	dishOverview.append(dishImageBox);
 	dishOverview.append(dishDescriptionBox);
 	backtoSelect.html("Back to Select Dish");
 	backtoSelectContainer.append(backtoSelect);
 	}
-
-	right_left.append(dishOverview);
-	right_left.append(backtoSelectContainer);
-	right.append(right_left);
-
-	this.backtoSelect = backtoSelect;
-
 
 	/*****************************************  
 	      Creating dish ingredients
@@ -167,16 +152,39 @@ var DishView = function (container,model) {
 			dishcost.html("Total dishcost: "+ totalDishCost);
 		}
 	}
-	
-	
 
+
+	/*****************************************  
+	      Append items to right  
+	*****************************************/
+	right_left.append(dishOverview);
+	right_left.append(backtoSelectContainer);
+	right.append(right_left);
+
+	this.backtoSelect = backtoSelect;
 	right_right.append(dishcost);
 	right_right.append(confirmDishButtonContainer);
 	right.append(right_right);
 	
+
+	/*****************************************  
+	      Append all items to container
+	      Bind items
+
+	*****************************************/
+
+	div.append(left);
 	div.append(right);
 	container.append(div);
 
+	this.plusButton = plusButton;
+	this.minusButton = minusButton;
+	this.confirmButton = confirmButton;
+	this.numberOfGuests = numberOfGuests;
+	this.totalPrice = totalPrice;
+
+	this.numberOfGuests.html(model.getNumberOfGuests()+" Guests");
+	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
 	this.updateFields = updateFields;
 	this.confirmDishButton = confirmDishButton;
 
