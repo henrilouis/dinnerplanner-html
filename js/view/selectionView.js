@@ -136,9 +136,10 @@ var SelectionView = function (container,model) {
 		        	return;
 			    }
 			    else
-			    {
+			    {	
+			    	window.currentDish = $(this).attr('value');
 			    	window.stage("dishView");
-					window.currentDish = $(this).attr('value');
+					
 			    }
 			});
 

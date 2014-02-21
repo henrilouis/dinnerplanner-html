@@ -9,8 +9,6 @@ var DishView = function (container,model) {
 	this.numberOfGuests = container.find("#numberOfGuests");
 	function updateFields()
 	{
-
-		alert(window.currentDish);
 		dish = model.getDish(window.currentDish);
 		updateDish();
 		updateIngredients();

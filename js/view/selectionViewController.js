@@ -30,4 +30,5 @@ var SelectionViewController = function(view, model ) {
 			model.addDishToMenu(ui.draggable.attr('value'));
 		}
 	});
+	
 }
