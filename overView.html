@@ -4,35 +4,31 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Diner Planner</title>
+    <title>Dinner Planner</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
 
   </head>
   <body>
   	<div class="container">
-		<header>
-			<h1>Dinner planner</h1>
-			<div id="slogan"><i>From the best chefs in the world directly into your kitchen.</i></div>
+		<header class="row">
+			<h1 class="col-md-12">Dinner planner</h1>
+			<div id="slogan" class="col-md-12"><i>From the best chefs in the world directly into your kitchen.</i></div>
 		</header>
   	</div>
 	<div class="container">
 		<div id="overView">
-			<div>
-				Number of guest <span id="numberOfGuests"></span>
-			</div>
-			<div>
-				<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
-			    <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
-			</div>
+
 		</div>
 
 	</div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 

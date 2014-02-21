@@ -1,11 +1,12 @@
 //OverViewController Object constructor
 var OverViewController = function(view, model ) {
-	
-	view.plusButton.click(function(){
-		model.setNumberOfGuests(model.getNumberOfGuests() + 1);
+
+	view.printButton.click(function(){
+		window.stage("preparationView");
 	});
-	
-	view.minusButton.click(function(){
-		model.setNumberOfGuests(model.getNumberOfGuests() - 1);
+
+	view.backButton.click(function(){
+		window.stage("selectionView");
 	});
+
 }
