@@ -9,6 +9,10 @@ var OverView = function (container,model) {
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.menuBox = container.find("#menuBox");
+		function updateFields2()
+	{
+		updateMenu2();
+	}
 	
 	//Creating the components dynamically. Here we create the following HTML content:
 	//
@@ -102,35 +106,6 @@ var OverView = function (container,model) {
 	}
 	updateMenu2();
 
-	/*this.updateDishes = function updateDishes(type,string)
-	{
-		dishBox.empty();
-		if(!type)
-		{
-			type = "starter";
-		}
-
-		var dishes = model.getAllDishes(type,string);
-		var row = $("<div>");
-
-		for(i = 0; i < dishes.length; i++)
-		{
-			
-			var figure = $("<figure value="+dishes[i].id+">");
-			var caption = $("<figcaption>");
-
-			figure.append("<img src='images/"+dishes[i].image+"'>")
-			caption.html(dishes[i].name);
-
-			figure.append(caption);
-
-		}
-
-		dishBox.append(row);
-	}
-
-	this.updateDishes();*/
-
 	/*****************************************************
 		Appending everything to the right container
 			
@@ -155,6 +130,7 @@ var OverView = function (container,model) {
 	this.menuBox = menuBox;
 	this.MyDinner = MyDinner;
 	this.middleText = middleText;
+		this.updateFields2 = updateFields2;
 
 	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
 	this.MyDinner.html("My Dinner: "+model.getNumberOfGuests()+" Guests");

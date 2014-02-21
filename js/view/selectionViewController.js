@@ -10,7 +10,7 @@ var SelectionViewController = function(view, model ) {
 	});
 
 	view.confirmButton.click(function(){
-		window.stage("selectionView");
+		window.stage("overView");
 	});
 
 	view.searchDropDown.change(function()

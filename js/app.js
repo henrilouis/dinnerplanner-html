@@ -24,6 +24,7 @@ $(function() {
 		   			break;
 
 		   		case "overView":
+		   			overView.updateFields2();
 		   			$("#dishView, #landingView, #preparationView, #selectionView").hide();
 		   			$("#overView").show();
 		   			break;
