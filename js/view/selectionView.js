@@ -123,7 +123,11 @@ var SelectionView = function (container,model) {
 			// Making the stuff draggable
 			$(figure).draggable({
 				appendTo:"body",
-				helper:"clone"
+				helper:"clone",
+				start:function(event,ui)
+				{
+					$(ui.helper).addClass('ui-draggable-helper');
+				}
 			});
 			row.append(figure);
 		}
