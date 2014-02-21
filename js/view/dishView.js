@@ -7,7 +7,14 @@ var DishView = function (container,model) {
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
-	
+	function updateFields()
+	{
+
+		alert(window.currentDish);
+		dish = model.getDish(window.currentDish);
+		updateDish();
+		updateIngredients();
+	}
 	//Creating the components dynamically. Here we create the following HTML content:
 	//
 	//<div class="row">
@@ -38,9 +45,7 @@ var DishView = function (container,model) {
 	var totalPrice = $("<h4>");
 	var confirmButton = $("<button class='btn btn-success'>");
 	var confirmButtonContainer = $("<div class='centertext'>");
-	var dishId = 1;
-
-	dishId = window.currentDish;
+	var dish = model.getDish(window.currentDish);
 	
 	minusButton.html('<span class="glyphicon glyphicon-minus"></span>');
 	plusButton.html('<span class="glyphicon glyphicon-plus"></span>')
@@ -52,9 +57,6 @@ var DishView = function (container,model) {
 	confirmButton.html("Confirm Dinner");
 	confirmButtonContainer.append(confirmButton);
 	menuBox.append("<tr><td>Dish Name</td><td>Cost</td></tr>");
-
-	updateMenu();
-	
 
 	menuBox.append(totalPrice);
 
@@ -99,25 +101,29 @@ var DishView = function (container,model) {
 	      Creating dish overview   
 
 	*****************************************/
-
-	var dish = model.getDish(dishId);
-	var dishName =(dish.name);
-	var dishDescription = dish.description;
+	
 	var dishOverview = $("<div>");
-	var dishImage = $("<div>");
 	var backtoSelect = $("<button id='backtoSelect' class='btn btn-success'>");
 	var backtoSelectContainer = $("<div>")
-
+	
+	function updateDish()
+	{
+	var dishName =(dish.name);
+	var dishDescription = dish.description;
+	var dishImage = $("<div>");
 	dishOverview.html("<h3>"+dishName+"</h3>");
 	dishImage.append("<img src='images/"+dish.image+"'>")
-	backtoSelect.html("Back to Select Dish");
-	backtoSelectContainer.append(backtoSelect);
-	
 	dishOverview.append(dishImage);
 	dishOverview.append(dishDescription);
-	dishOverview.append(backtoSelectContainer);
-	
+	backtoSelect.html("Back to Select Dish");
+	backtoSelectContainer.append(backtoSelect);
+	}
+
 	right_left.append(dishOverview);
+	right_left.append(backtoSelectContainer);
+	right.append(right_left);
+
+	this.backtoSelect = backtoSelect;
 
 
 	/*****************************************  
@@ -133,20 +139,17 @@ var DishView = function (container,model) {
 
 	right_right.append(ingredientHeading);
 	ingredientBox.append("<tr><td>Ingredient Name</td><td>Amount</td><td>Cost</td></tr>");
-	updateIngredients();
+
 	right_right.append(ingredientBox);
 	confirmDishButton.html("Confirm Dish");
 	confirmDishButtonContainer.append(confirmDishButton);
-	right_right.append(dishcost);
-	right_right.append(confirmDishButtonContainer);
-
+	
 	function updateIngredients(){
 		ingredientHeading.html("Ingredients for "+ model.getNumberOfGuests() +" people");
 		var totalDishCost = 0;
 		
 		$(ingredientBox).find("tr:gt(0)").remove();
 
-		
 		for(i = 0; i < dish.ingredients.length; i++)
 		{
 			var amount = 0;
@@ -162,17 +165,19 @@ var DishView = function (container,model) {
 			dishcost.html("Total dishcost: "+ totalDishCost);
 		}
 	}
+	
+	
 
-	right.append(right_left);
+	right_right.append(dishcost);
+	right_right.append(confirmDishButtonContainer);
 	right.append(right_right);
+	
 	div.append(right);
-
 	container.append(div);
 
-	this.backtoSelect = backtoSelect;
+	this.updateFields = updateFields;
 	this.confirmDishButton = confirmDishButton;
-	this.dishId = dishId;
-	
+
 
 	/*****************************************  
 	      Observer implementation    

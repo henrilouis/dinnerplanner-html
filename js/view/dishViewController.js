@@ -18,7 +18,7 @@ var DishViewController = function(view, model ) {
 	});
 
 	view.confirmDishButton.click(function(){
-		model.addDishToMenu(view.dishId);
+		model.addDishToMenu(window.currentDish);
 		window.stage("selectionView");
 	});
 

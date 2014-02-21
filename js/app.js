@@ -18,6 +18,7 @@ $(function() {
 		   			break;
 
 		   		case "dishView":
+		   			dishView.updateFields();
 		   			$("#landingView, #overView, #preparationView, #selectionView").hide();
 		   			$("#dishView").show();
 		   			break;
