@@ -121,7 +121,27 @@ var SelectionView = function (container,model) {
 			figure.append(caption);
 
 			// Making the stuff draggable
-			
+			$(figure).draggable(
+			{
+				appendTo:"body",
+				helper:"clone",
+				start:function(event,ui)
+				{
+					$(ui.helper).addClass('ui-draggable-helper');
+				}
+			}).click(function()
+			{
+				if($(this).is('.ui-draggable-helper')) 
+				{
+		        	return;
+			    }
+			    else
+			    {
+			    	window.stage("dishView");
+					window.currentDish = $(this).attr('value');
+			    }
+			});
+
 			row.append(figure);
 		}
 

@@ -30,6 +30,7 @@ var SelectionViewController = function(view, model ) {
 			model.addDishToMenu(ui.draggable.attr('value'));
 		}
 	});
+<<<<<<< HEAD
 
 	$("figure").draggable(
 	{
@@ -53,4 +54,6 @@ var SelectionViewController = function(view, model ) {
 	    }
 	    
 	});
+=======
+>>>>>>> 76f07572791366ae2a095e736a34b3cb638e86cc
 }

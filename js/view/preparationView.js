@@ -3,13 +3,50 @@
 
 
 //PreparationView Object constructor
-var PreparationView = function (container,model) {
+var PreparationView = function (container,model) 
+{
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
-	this.numberOfGuests = container.find("#numberOfGuests");
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
+	var row = $("<div>");
+	var div = $("<div>");
+	var p = $("<P>");
+	var button = $("<button>");
+	var image = ("<image>");
+	
+
+
+    $("#numberofguest").html("My dinner: " + model.getNumberOfGuests() + "people");
+    //image.html
+
+
+    //image.addClass(img-responsive alt="Responsive image");
+
+	button.html("Go back and edit dinner");
+
+	row.addClass('row');
+	
+	
+	button.addClass('btn');
+	button.attr('id','GoBackEditButton');
+	
+	div.append(image);
+	div.append(p);
+	div.append(button);
+
+	row.append(div);
+
+	this.GoBackEditButton = button;
+
+	container.append(row);
+
+
+    //<img src="toast.jpg" class="img-responsive" alt="Responsive image">
+
+
+	//this.numberOfGuests = container.find("#numberOfGuests");
+	//this.plusButton = container.find("#plusGuest");
+	//this.minusButton = container.find("#minusGuest");
 	
 	//Creating the components dynamically. Here we create the following HTML content:
 	//
@@ -35,20 +72,19 @@ var PreparationView = function (container,model) {
 	container.append(div);
 	
 	//Set the inital values of the components
-	this.numberOfGuests.html(model.getNumberOfGuests());
-	this.totalPrice.html(model.getTotalMenuPrice());
+	//this.numberOfGuests.html(model.getNumberOfGuests());
+	//this.totalPrice.html(model.getTotalMenuPrice());
 	
 	/*****************************************  
 	      Observer implementation    
 	*****************************************/
 	
 	//Register an observer to the model
-	model.addObserver(this);
+	//model.addObserver(this);
 	
 	//This function gets called when there is a change at the model
-	this.update = function(arg){
-		this.numberOfGuests.html(model.getNumberOfGuests());
-		this.totalPrice.html(model.getTotalMenuPrice());
-	}
+	//this.update = function(arg){
+		//this.numberOfGuests.html(model.getNumberOfGuests());
+		//this.totalPrice.html(model.getTotalMenuPrice());
 }
  
