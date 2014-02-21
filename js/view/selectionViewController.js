@@ -48,7 +48,7 @@ var SelectionViewController = function(view, model ) {
 	    else
 	    {
 	    	window.stage("dishView");
-			window.currentDish = this.attr('value');
+			window.currentDish = $(this).attr('value');
 	    }
 	    
 	});
