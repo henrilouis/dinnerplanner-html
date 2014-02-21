@@ -40,6 +40,8 @@ $(function() {
 		}
 
 	}
+
+	window.currentDish = 1;
 	
 	//We instantiate our model
 	var model = new DinnerModel();
