@@ -26,7 +26,7 @@ var PreparationView = function (container,model)
 
 	var div = $("<div class='row'>");
 	var left = $("<div id='leftbox' class='col-md-3'>");
-	var right = $("<div id='rightbox' class='col-md-9'>");
+	var right = $("<div id='rightbox' class='col-md-12'>");
 	var middle = $("<div id='middlebox' class='col-md-12'>");
 
 	/*****************************************************
@@ -37,45 +37,13 @@ var PreparationView = function (container,model)
 
 	var middleText = $("<table id='middleTable' class='table'>");
 	var MyDinner = $("<h3 style='text-align:right; float:right;'>");
-	var numberOfGuests = $("<span>");
 	var backButton =$("<button class='btn btn-danger' id='backButton'>");
 	backButton.html('Go back and edit dinner');
 
 	middleText.append(backButton);
 	middleText.append(MyDinner);
 
-	/*****************************************************
-
-				Creating the menu on the left
-
-	*****************************************************/
-
-	var menuBox = $("<table id='menuTable' class='table'>");
-	var totalPrice = $("<h4>");
-
-	menuBox.append("<tr><td><b>Dish Name</b></td><td><b>Cost</b></td></tr>");
-
-	menuBox.append(totalPrice);
-
-	function updateMenu()
-	{
-		$(menuBox).find("tr:gt(0)").remove();
-		var menuDishes = model.getFullMenu();
-
-		for(i=0; i<menuDishes.length; i++)
-		{
-			var ingredients = [];
-			var sum = 0;
-			ingredients = ingredients.concat(menuDishes[i].ingredients);
-			for(k in ingredients)
-			{
-				sum += parseFloat(ingredients[k].price) * model.getNumberOfGuests();
-			}
-			menuBox.append("<tr><td>"+menuDishes[i]['name']+"</td><td>"+sum+"</td></tr>");
-		}
-	}
-	updateMenu();
-
+	
 	/*****************************************************
 			Creating the overview of dishes
 			
@@ -105,7 +73,6 @@ var PreparationView = function (container,model)
 			descriptionBox.append(dishImage);
 			descriptionBox.append(dishNameBox);
 			descriptionBox.append(dishDescription);
-			
 			dishBox.append(descriptionBox);
 			right.append(dishBox)
 		}
@@ -119,29 +86,20 @@ var PreparationView = function (container,model)
 			
 	*****************************************************/
 
-	left.append(menuBox);
-
-	
-
 	middle.append(middleText);
 
 	div.append(middle);
-	div.append(left);
 	div.append(right);
 
 	container.append(div);
 
 	this.backButton = backButton;
-	this.totalPrice = totalPrice;
-	this.menuBox = menuBox;
 	this.MyDinner = MyDinner;
 	this.middleText = middleText;
 	this.updateFields3 = updateFields3;
 
-	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
-	this.MyDinner.html("My Dinner: "+model.getNumberOfGuests()+" Guests");
-	
-	/*****************************************  
+
+		/*****************************************  
 	      Observer implementation    
 
 	*****************************************/
@@ -151,12 +109,6 @@ var PreparationView = function (container,model)
 	
 	//This function gets called when there is a change at the model
 	this.update = function(arg){
-		this.MyDinner.html("My Dinner: "+model.getNumberOfGuests()+" Guests");
-		this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
-
-		// update the menu
-		updateMenu();
-		
 	}
 }
  

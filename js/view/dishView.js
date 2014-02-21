@@ -108,11 +108,15 @@ var DishView = function (container,model) {
 	{
 	var dishName =(dish.name);
 	var dishDescription = dish.description;
-	var dishImage = $("<div>");
+	var dishDescriptionBox = $("<div class='textbox'>")
+	var dishImage = $("<figure value="+dish.id+">");
+	var dishImageBox = $("<div class='overviewrow'>")
 	dishOverview.html("<h3>"+dishName+"</h3>");
 	dishImage.append("<img src='images/"+dish.image+"'>")
-	dishOverview.append(dishImage);
-	dishOverview.append(dishDescription);
+	dishImageBox.append(dishImage);
+	dishDescriptionBox.append(dishDescription);
+	dishOverview.append(dishImageBox);
+	dishOverview.append(dishDescriptionBox);
 	backtoSelect.html("Back to Select Dish");
 	backtoSelectContainer.append(backtoSelect);
 	}

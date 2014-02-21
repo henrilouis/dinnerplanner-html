@@ -1,19 +1,19 @@
-// The view of the overview page should be created here like this : 
-// https://kth-csc.mybalsamiq.com/projects/dh2641-vt14-lab4assignment-web/dinner_overview
+// The view of the preparations should be created here like this : 
+// https://kth-csc.mybalsamiq.com/projects/dh2641-vt14-lab4assignment-web/dinner_preparation
 
 
-//OverView Object constructor
-var OverView = function (container,model) {
-	
+//PreparationView Object constructor
+var PreparationView = function (container,model) 
+{	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.menuBox = container.find("#menuBox");
-	function updateFields2()
+	function updateFields3()
 	{
 		updateOverview();
 	}
-	
+
 	//Creating the components dynamically. Here we create the following HTML content:
 	//
 	//<div class="row">
@@ -52,11 +52,7 @@ var OverView = function (container,model) {
 
 	var menuBox = $("<table id='menuTable' class='table'>");
 	var totalPrice = $("<h4>");
-	var printButton = $("<button class='btn btn-success'>");
-	var printButtonContainer = $("<div class='centertext'>");
 
-	printButton.html("Print Full Recipe");
-	printButtonContainer.append(printButton);
 	menuBox.append("<tr><td><b>Dish Name</b></td><td><b>Cost</b></td></tr>");
 
 	menuBox.append(totalPrice);
@@ -85,7 +81,8 @@ var OverView = function (container,model) {
 			
 	*****************************************************/
 	var dishBox = $("<div>");
-
+	var dishOverview = $("<div class =  'overviewtable'>");
+	
 	function updateOverview()
 	{
 		dishBox.empty();
@@ -93,38 +90,33 @@ var OverView = function (container,model) {
 
 		for(i=0; i<menuDishes.length; i++)
 		{	
-			var ingredients = [];
-			var dishImage = $("<figure value="+menuDishes[i].id+">");
-			var caption = $("<figcaption>");
-			var sum = 0;
-
-			ingredients = ingredients.concat(menuDishes[i].ingredients);
-			dishImage.append("<img src='images/"+menuDishes[i].image+"'>")
-			caption.html(menuDishes[i].name);
-			/*
-			for(k in ingredients)
-			{
-				sum += parseFloat(ingredients[k].price) * model.getNumberOfGuests();
-			}
-			figure.append(sum);
-			*/
-			dishImage.append(caption);
-			dishBox.append(dishImage);
 			
+			var dishImage = $("<div>");
+			var figure = $("<figure value="+menuDishes[i].id+">");
+			var dishName =(menuDishes[i].name);
+			var dishNameBox = $("<h3>");
+			var dishDescription = menuDishes[i].description;
+			var descriptionBox = $("<div class =  'overviewrow'>");
+			
+			figure.append("<img src='images/"+menuDishes[i].image+"'>")
+
+			dishNameBox.append(dishName);
+			dishImage.append(figure);
+			descriptionBox.append(dishImage);
+			descriptionBox.append(dishNameBox);
+			descriptionBox.append(dishDescription);
+			dishBox.append(descriptionBox);
+			right.append(dishBox)
 		}
 
 	}
 	updateOverview();
 
+	
 	/*****************************************************
 		Appending everything to the right container
 			
 	*****************************************************/
-
-	left.append(menuBox);
-	left.append(printButtonContainer);
-
-	right.append(dishBox)
 
 	middle.append(middleText);
 
@@ -134,14 +126,15 @@ var OverView = function (container,model) {
 
 	container.append(div);
 
-	this.printButton = printButton;
 	this.backButton = backButton;
-	this.totalPrice = totalPrice;
-	this.menuBox = menuBox;
 	this.MyDinner = MyDinner;
 	this.middleText = middleText;
-	this.updateFields2 = updateFields2;
+	this.updateFields3 = updateFields3;
 
+	
+	left.append(menuBox);
+	this.totalPrice = totalPrice;
+	this.menuBox = menuBox;
 	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
 	this.MyDinner.html("My Dinner: "+model.getNumberOfGuests()+" Guests");
 	
