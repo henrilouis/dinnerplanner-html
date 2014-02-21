@@ -38,8 +38,10 @@ var DishView = function (container,model) {
 	var totalPrice = $("<h4>");
 	var confirmButton = $("<button class='btn btn-success'>");
 	var confirmButtonContainer = $("<div class='centertext'>");
-	var dishId = 100;
+	var dishId = 1;
 
+	dishId = window.currentDish;
+	
 	minusButton.html('<span class="glyphicon glyphicon-minus"></span>');
 	plusButton.html('<span class="glyphicon glyphicon-plus"></span>')
 	peopleBox.html("<h3>My Dinner</h3>");

@@ -39,7 +39,8 @@ var SelectionViewController = function(view, model ) {
 		{
 			$(ui.helper).addClass('ui-draggable-helper');
 		}
-	}).click(function()
+	});
+	$("figure").click(function()
 	{
 		if($(this).is('.ui-draggable-helper')) 
 		{

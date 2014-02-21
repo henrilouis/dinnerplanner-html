@@ -14,7 +14,7 @@ var DishViewController = function(view, model ) {
 	});
 
 	view.confirmButton.click(function(){
-		window.stage("overView");
+		window.stage("selectionView");
 	});
 
 	view.confirmDishButton.click(function(){
