@@ -21,6 +21,8 @@ var DishView = function (container,model) {
 	var div = $("<div class='row'>");
 	var left = $("<div id='leftbox' class='col-md-3'>");
 	var right = $("<div id='rightbox' class='col-md-9'>");
+	var right_left = $("<div class='col-md-6'>");
+	var right_right = $("<div class='col-md-6'>");
 
 	/*****************************************************
 
@@ -36,6 +38,7 @@ var DishView = function (container,model) {
 	var totalPrice = $("<h4>");
 	var confirmButton = $("<button class='btn btn-success'>");
 	var confirmButtonContainer = $("<div class='centertext'>");
+	var dishId = 100;
 
 	minusButton.html('<span class="glyphicon glyphicon-minus"></span>');
 	plusButton.html('<span class="glyphicon glyphicon-plus"></span>')
@@ -49,6 +52,7 @@ var DishView = function (container,model) {
 	menuBox.append("<tr><td>Dish Name</td><td>Cost</td></tr>");
 
 	updateMenu();
+	
 
 	menuBox.append(totalPrice);
 
@@ -75,7 +79,6 @@ var DishView = function (container,model) {
 	left.append(confirmButtonContainer);
 
 	div.append(left);
-	div.append(right);
 
 	container.append(div);
 
@@ -87,7 +90,88 @@ var DishView = function (container,model) {
 
 	this.numberOfGuests.html(model.getNumberOfGuests()+" Guests");
 	this.totalPrice.html("Total Price: "+model.getTotalMenuPrice());
+
+
 	
+	/*****************************************  
+	      Creating dish overview   
+
+	*****************************************/
+
+	var dish = model.getDish(dishId);
+	var dishName =(dish.name);
+	var dishDescription = dish.description;
+	var dishOverview = $("<div>");
+	var dishImage = $("<div>");
+	var backtoSelect = $("<button id='backtoSelect' class='btn btn-success'>");
+	var backtoSelectContainer = $("<div>")
+
+	dishOverview.html("<h3>"+dishName+"</h3>");
+	dishImage.append("<img src='images/"+dish.image+"'>")
+	backtoSelect.html("Back to Select Dish");
+	backtoSelectContainer.append(backtoSelect);
+	
+	dishOverview.append(dishImage);
+	dishOverview.append(dishDescription);
+	dishOverview.append(backtoSelectContainer);
+	
+	right_left.append(dishOverview);
+
+
+	/*****************************************  
+	      Creating dish ingredients
+
+	*****************************************/
+
+	var ingredientHeading = $("<h4>");
+	var ingredientBox = $("<table id='menuTable' class='table'>");
+	var confirmDishButton = $("<button class='btn btn-success'>");
+	var confirmDishButtonContainer = $("<div>");
+	var dishcost = $("<div class='centertext'>");
+
+	right_right.append(ingredientHeading);
+	ingredientBox.append("<tr><td>Ingredient Name</td><td>Amount</td><td>Cost</td></tr>");
+	updateIngredients();
+	right_right.append(ingredientBox);
+	confirmDishButton.html("Confirm Dish");
+	confirmDishButtonContainer.append(confirmDishButton);
+	right_right.append(dishcost);
+	right_right.append(confirmDishButtonContainer);
+
+	function updateIngredients(){
+		ingredientHeading.html("Ingredients for "+ model.getNumberOfGuests() +" people");
+		var totalDishCost = 0;
+		
+		$(ingredientBox).find("tr:gt(0)").remove();
+
+		
+		for(i = 0; i < dish.ingredients.length; i++)
+		{
+			var amount = 0;
+			var unit = $("<p>");
+			var cost = 0;
+			
+			amount  = parseFloat(dish.ingredients[i].quantity) * model.getNumberOfGuests();
+			amount = +amount.toFixed(2);
+			unit = (dish.ingredients[i].unit);
+			cost = parseFloat((dish.ingredients[i].price) * model.getNumberOfGuests()).toFixed(0);
+			totalDishCost += dish.ingredients[i].price * model.getNumberOfGuests();
+			ingredientBox.append("<tr><td>"+dish.ingredients[i].name+"</td><td>"+amount+unit+"</td><td>"+cost+"</td></tr>");
+			dishcost.html("Total dishcost: "+ totalDishCost);
+		}
+	}
+
+	right.append(right_left);
+	right.append(right_right);
+	div.append(right);
+
+	container.append(div);
+
+	this.backtoSelect = backtoSelect;
+	this.confirmDishButton = confirmDishButton;
+	this.dishId = dishId;
+	
+
 	/*****************************************  
 	      Observer implementation    
 
@@ -104,6 +188,8 @@ var DishView = function (container,model) {
 		// update the menu
 		updateMenu();
 		
+		// update ingredients
+		updateIngredients();
 	}
 }
  

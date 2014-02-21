@@ -9,9 +9,21 @@ var DishViewController = function(view, model ) {
 		model.setNumberOfGuests(model.getNumberOfGuests() - 1);
 	});
 
-	view.confirmButton.click(function(){
+	view.backtoSelect.click(function(){
 		window.stage("selectionView");
 	});
+
+	view.confirmButton.click(function(){
+		window.stage("overView");
+	});
+
+	view.confirmDishButton.click(function(){
+		model.addDishToMenu(view.dishId);
+		window.stage("selectionView");
+	});
+
+
+
 
 	
 }
