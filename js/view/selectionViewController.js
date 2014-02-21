@@ -29,5 +29,10 @@ var SelectionViewController = function(view, model ) {
 		drop: function(event, ui){
 			model.addDishToMenu(ui.draggable.attr('value'));
 		}
-	})
+	});
+
+	$("figure").click(function(){
+		window.stage("dishView");
+		window.currentDish = this.attr('value');
+	});
 }

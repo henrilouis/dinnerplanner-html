@@ -41,7 +41,6 @@ $(function() {
 
 	}
 	
-	
 	//We instantiate our model
 	var model = new DinnerModel();
 	
